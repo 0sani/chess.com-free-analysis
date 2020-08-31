@@ -3,8 +3,6 @@ import re
 import json
 import credentials
 
-#credentials
-HEADER = {'Authorization':'Bearer '+credentials.token}
 
 # gets chess.com profile
 url = f'https://api.chess.com/pub/player/{credentials.player}/games/archives'
@@ -23,5 +21,5 @@ trimmedData = re.sub("\[Date .*?\]|\[Round .*?\]|\[ECO .*?\]|\[ECOUrl .*?\]|\[Cu
 
 
 # Posts the PGN to lichess.org to open analysis board and prints the analysis URL
-x = requests.post('https://lichess.org/api/import',data={"pgn":trimmedData},headers=HEADER)
+x = requests.post('https://lichess.org/api/import',data={"pgn":trimmedData})
 print(x.json()['url'])
